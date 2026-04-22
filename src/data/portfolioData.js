@@ -15,7 +15,7 @@ export const personalInfo = {
   email: "mehedihasanemon972@gmail.com",
   phone: "+8801964438983",                           // Optional — set to "" to hide
   location: "Jigatola, Dhaka",
-  resume: "/Resume_Mehedi Hasan Emon (1).pdf",                                 // Place your resume in /public
+  resume: "/Resume_Mehedi Hasan Emon (2).pdf",                                 // Place your resume in /public
   avatar: "/images/2021_me.jpg",                          // Place your photo in /public/images
   availability: "Open to opportunities",                 // Or "Available for freelance", etc.
 };
