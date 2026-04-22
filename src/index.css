@@ -1,0 +1,223 @@
+/* ===================================================================
+ * Main Stylesheet — Portfolio Website
+ * Uses Tailwind CSS v4 with @import directive
+ * =================================================================== */
+
+@import "tailwindcss";
+
+
+
+/* ===================================================================
+ * Custom Theme Configuration via @theme
+ * Defines the design tokens: colors, fonts, animations, shadows
+ * =================================================================== */
+@theme {
+  /* — Brand Colors — */
+  --color-primary-50: #f0f0ff;
+  --color-primary-100: #e0e0ff;
+  --color-primary-200: #c7c7fe;
+  --color-primary-300: #a5a5fc;
+  --color-primary-400: #8282f8;
+  --color-primary-500: #6c63ff;
+  --color-primary-600: #5a4cf0;
+  --color-primary-700: #4c3dd4;
+  --color-primary-800: #3e33ab;
+  --color-primary-900: #352e88;
+  --color-primary-950: #201b4f;
+
+  --color-secondary-400: #38bdf8;
+  --color-secondary-500: #0ea5e9;
+  --color-secondary-600: #0284c7;
+
+  --color-accent-400: #a78bfa;
+  --color-accent-500: #8b5cf6;
+  --color-accent-600: #7c3aed;
+
+  /* — Neutral / Dark Theme Palette — */
+  --color-dark-50: #f8fafc;
+  --color-dark-100: #f1f5f9;
+  --color-dark-200: #e2e8f0;
+  --color-dark-300: #cbd5e1;
+  --color-dark-400: #94a3b8;
+  --color-dark-500: #64748b;
+  --color-dark-600: #475569;
+  --color-dark-700: #334155;
+  --color-dark-800: #1e293b;
+  --color-dark-900: #0f172a;
+  --color-dark-950: #020617;
+
+  /* — Feedback Colors — */
+  --color-success-500: #22c55e;
+  --color-error-500: #ef4444;
+  --color-warning-500: #f59e0b;
+
+  /* — Fonts — */
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* — Custom Animations — */
+  --animate-fade-in: fade-in 0.6s ease-out forwards;
+  --animate-slide-up: slide-up 0.6s ease-out forwards;
+  --animate-slide-down: slide-down 0.5s ease-out forwards;
+  --animate-bounce-slow: bounce-slow 2s infinite;
+  --animate-shimmer: shimmer 2s infinite linear;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
+
+  /* — Custom Keyframes — */
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slide-down {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 5px rgba(108, 99, 255, 0.3); }
+    50% { box-shadow: 0 0 20px rgba(108, 99, 255, 0.6); }
+  }
+}
+
+
+
+/* ===================================================================
+ * Base Styles
+ * =================================================================== */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* — Custom Scrollbar — */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-dark-900);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary-600);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-500);
+}
+
+/* — Selection Style — */
+::selection {
+  background: rgba(108, 99, 255, 0.3);
+  color: #fff;
+}
+
+/* ===================================================================
+ * Utility Classes
+ * =================================================================== */
+
+/* Glass morphism card */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Glass morphism - light mode */
+.light .glass {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-primary-400), var(--color-secondary-400));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated gradient background */
+.gradient-bg {
+  background: linear-gradient(-45deg, #0f172a, #1a1145, #0f172a, #0c1e3a);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Section gradient overlay */
+.section-gradient {
+  background: linear-gradient(180deg, transparent 0%, rgba(15, 23, 42, 0.5) 100%);
+}
+
+/* Glow effect for cards */
+.glow-border {
+  position: relative;
+}
+.glow-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--color-primary-500), var(--color-secondary-500));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+.glow-border:hover::before {
+  opacity: 1;
+}
+
+/* Skip-to-content link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: var(--color-primary-600);
+  color: white;
+  font-weight: 600;
+  transition: top 0.3s;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* Light mode overrides */
+.light body {
+  color: var(--color-dark-800);
+}
+.light .gradient-bg {
+  background: linear-gradient(-45deg, #f8fafc, #ede9fe, #f0f9ff, #f8fafc);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+.light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
